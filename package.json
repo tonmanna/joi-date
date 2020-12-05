@@ -1,24 +1,23 @@
 {
-  "name": "@hapi/joi-date",
-  "description": "Joi extension for dates",
+  "name": "joi-date-dayjs",
+  "description": "Joi date extension for dates convert Moment to dayjs",
   "version": "2.0.1",
-  "repository": "git://github.com/hapijs/joi-date",
   "main": "lib/index.js",
   "keywords": [
     "schema",
     "validation",
     "date",
-    "moment",
+    "dayjs",
     "joi",
     "extension"
   ],
   "dependencies": {
-    "moment": "2.x.x"
+    "dayjs": "^1.9.7"
   },
   "devDependencies": {
-    "@hapi/code": "6.x.x",
-    "@hapi/joi": "^16.1.7",
-    "@hapi/lab": "20.x.x"
+    "@hapi/code": "^8.0.2",
+    "@hapi/joi": "^17.1.1",
+    "@hapi/lab": "^24.1.0"
   },
   "scripts": {
     "test": "lab -t 100 -a @hapi/code -L",

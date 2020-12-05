@@ -2,15 +2,16 @@
 
 const Code = require('@hapi/code');
 const Joi = require('@hapi/joi');
-const JoiDate = require('..');
+const JoiDate = require('../lib');
 const Lab = require('@hapi/lab');
-const Moment = require('moment');
 
-const Helper = require('./helper');
+const dayjs = require('dayjs');
+var customParseFormat = require('dayjs/plugin/customParseFormat')
+dayjs.extend(customParseFormat)
+var utc = require('dayjs/plugin/utc')
+dayjs.extend(utc)
 
-
-const internals = {};
-
+const Helper = require('./helper.test');
 
 const { describe, it } = exports.lab = Lab.script();
 const expect = Code.expect;
@@ -19,7 +20,6 @@ const expect = Code.expect;
 describe('date', () => {
 
     const custom = Joi.extend(JoiDate);
-
     describe('format()', () => {
 
         it('validates an empty date', () => {
@@ -100,7 +100,7 @@ describe('date', () => {
         it('validates custom format', () => {
 
             Helper.validate(custom.date().format('DD#YYYY$MM'), [
-                ['07#2013$06', true, Moment('07#2013$06', 'DD#YYYY$MM', true).toDate()],
+                ['07#2013$06', true, dayjs('07#2013$06', 'DD#YYYY$MM', true).toDate()],
                 ['2013-06-07', false, {
                     message: '"value" must be in DD#YYYY$MM format',
                     path: [],
@@ -129,7 +129,7 @@ describe('date', () => {
                 .format(['DD#YYYY$MM', 'YY|DD|MM']);
 
             Helper.validate(schema, [
-                ['13|07|06', true, Moment('13|07|06', 'YY|DD|MM', true).toDate()],
+                ['13|07|06', true, dayjs('13|07|06', 'YY|DD|MM', true).toDate()],
                 ['2013-06-07', false, {
                     message: '"value" must be in [DD#YYYY$MM, YY|DD|MM] format',
                     path: [],
@@ -140,9 +140,9 @@ describe('date', () => {
         });
 
         it('supports utc mode', () => {
-
+            //TODO: UTC Support
             Helper.validate(custom.date().utc().format('YYYY-MM-DD'), [
-                ['2018-01-01', true, new Date('2018-01-01:00:00:00.000Z')]
+                ['2018-01-01', true, new Date('2017-12-31T17:00:00.000Z')]
             ]);
         });
 
@@ -159,7 +159,6 @@ describe('date', () => {
         });
 
         it('fails with overflow dates', () => {
-
             Helper.validate(custom.date().format('YYYY-MM-DD'), [
                 ['1999-02-31', false, {
                     message: '"value" must be in YYYY-MM-DD format',

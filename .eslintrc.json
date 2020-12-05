@@ -1,0 +1,30 @@
+{
+    "root": true,
+    "env": {
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "rules": {
+        "require-await": "error",
+        "no-async-promise-executor": "error",
+        "max-len": [
+            "error",
+            {
+                "code": 180
+            }
+        ],
+        "no-prototype-builtins": "off",
+        "quotes": [
+            "error",
+            "single",
+            {
+                "avoidEscape": true
+            }
+        ]
+    }
+}

@@ -1,6 +1,11 @@
-# @sideway/joi-date
+# Remove momentJS from this repo joi-date
 
-#### Extensions for advance date rules.
+We want to remove momentJS from this repo
+Fork from
+
+## @sideway/joi-date
+
+## Extensions for advance date rules.
 
 ### Visit the [hapi.dev](https://hapi.dev) Developer Portal for tutorials, documentation, and support
 

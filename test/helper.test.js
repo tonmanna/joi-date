@@ -1,14 +1,8 @@
-'use strict';
-
 const Code = require('@hapi/code');
-
-
 const internals = {};
-
-
 const { expect } = Code;
 
-
+// eslint-disable-next-line no-undef
 exports.skip = Symbol('skip');
 
 
@@ -107,7 +101,7 @@ internals.thrownAt = function () {
 
     const error = new Error();
     const frame = error.stack.replace(error.toString(), '').split('\n').slice(1).filter((line) => !line.includes(__filename))[0];
-    const at = frame.match(/^\s*at \(?(.+)\:(\d+)\:(\d+)\)?$/);
+    const at = frame.match(/^\s*at \(?(.+):(\d+):(\d+)\)?$/);
     return {
         filename: at[1],
         line: at[2],

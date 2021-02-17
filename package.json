@@ -2,6 +2,10 @@
   "name": "joi-date-dayjs",
   "description": "Joi date extension for dates convert Moment to dayjs",
   "version": "2.0.1",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/tonmanna/joi-date.git"
+  },
   "main": "lib/index.js",
   "keywords": [
     "schema",
